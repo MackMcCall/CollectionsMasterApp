@@ -154,15 +154,19 @@ namespace CollectionsMasterConsoleUI
         private static void OddKiller(List<int> numberList)
         {
             var oddList = new List<int>();
-            foreach (int num in numberList)
+            for (int i = numberList.Count - 1; i >= 0; i--)
             {
-                if (num % 2 == 1 || num == 0)
+                if (numberList[i] % 2 != 0)
                 {
-                    oddList.Add(num);
+                    numberList.RemoveAt(i);
                 }
             }
-            numberList.RemoveAll(item => oddList.Contains(item));
             NumberPrinter(numberList);
+            /*Reformatted this one. I realized that going backwards will not cause
+             * the errors that going forward does since you are not going to skip 
+             * over any numbers, and the index will not change in the direction that
+             * the for loop is moving, only where you have already been.
+             */
         }
 
         private static void NumberChecker(List<int> numberList, int searchNumber)
